@@ -1,22 +1,26 @@
-const http = require('http');
-
-//ip the server uses
-const hostname = '127.0.0.1';
-
-//port the server uses
+const express = require('express');
+app = express()
+const hostname = '127.0.0.1'
 const port = 8080;
 
-const server = http.createServer((req, res) => {
+app.set('view engine', 'ejs');
 
-  //sends back status code 200 to give the ay ok
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
 
-  //prints ‘Hello World’ to the screen when you access the website
-  res.end('Hello World');
+app.get('/', function(req, res) {
+  res.render('index.ejs', {
+  });
 });
-//creates a listen server
-server.listen(port, hostname, () => {
-  //prints the server is running into the command prompt
+
+app.get('/student', function(req, res) {
+  res.render('student.ejs', {
+  });
+});
+
+app.get('/teacher', function(req, res) {
+  res.render('teacher.ejs', {
+  });
+});
+
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
