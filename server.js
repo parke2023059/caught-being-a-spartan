@@ -3,7 +3,7 @@ app = express()
 const hostname = '127.0.0.1'
 const port = 8080;
 
-
+const students = []
 
 
 app.set('view engine', 'ejs');
@@ -19,6 +19,11 @@ app.get('/access', function(req, res) {
   });
 });
 
+
+app.post('/access', function(req, res) {
+  res.render('access.ejs', {
+  });
+});
 
 
 app.listen(port, hostname, () => {
