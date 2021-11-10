@@ -11,15 +11,12 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/student', function(req, res) {
-  res.render('student.ejs', {
+app.get('/access', function(req, res) {
+  res.render('access.ejs', {
   });
 });
 
-app.get('/teacher', function(req, res) {
-  res.render('teacher.ejs', {
-  });
-});
+
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
