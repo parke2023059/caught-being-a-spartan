@@ -5,9 +5,6 @@ const hostname = '127.0.0.1'
 const port = 1337;
 
 
-
-
-
 app.set('view engine', 'ejs');
 
 
@@ -23,10 +20,15 @@ app.get('/access', function(req, res) {
 
 app.get("/teacher", function(req, res) {
   res.render("teacher.ejs", {
-    
+
   })
 })
 
+
+app.post('/access', function(req, res) {
+  res.render('access.ejs', {
+  });
+});
 
 
 app.listen(port, hostname, () => {
