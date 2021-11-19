@@ -1,6 +1,7 @@
 const express = require('express');
 const readline = require('readline');
 const fs = require('fs');
+const path = require('path');
 app = express()
 const hostname = '127.0.0.1'
 app.use(express.urlencoded({ extended: true}));
@@ -9,35 +10,36 @@ const port = 1337;
 
 app.set('view engine', 'ejs');
 
-var rawdata = fs.readFileSync(__dirname + '/userinfo.json');
 
 
 app.get('/', function(req, res) { //view and edit scores
   var rawinfo = fs.readFileSync(__dirname + "/userinfo.json")
   feed = JSON.parse(rawinfo)
+  text = feed.text
   res.render('index.ejs', { //depending on perms ^
-    username:uName,
-    password: passw
-  });
+      text: text
+    });
 });
-
 app.post('/', function(req, res) {
-  const user = req.body.Uname
-  const pass = req.body.Pass
+  const user = req.body.uname
+  const pass = req.body.pass
   var login = {
-    uName: user,
-    passw: pass
+    name: "user",
+    password: "pass"
   }
+  console.log(login.name)
 
-  if (login.username && login.password) {
-    var rawinfo = fs.readFileSync('./userinfo')
+  if (login.name && login.password) {
+    var rawinfo = fs.readFileSync(__dirname + '/userinfo.json')
     feed = JSON.parse(rawinfo)
     console.log(feed)
-    comments = feed.comments
-    comments.push(login)
+    text = feed.text
+    text.push(login)
     var feed = {
-      comments: comments
+      text: text
+
     }
+
     var feed = JSON.stringify(feed)
 
     fs.writeFile(__dirname + '/userinfo.json', feed, 'utf8', function() {
