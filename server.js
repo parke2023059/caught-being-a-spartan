@@ -24,6 +24,11 @@ app.get("/teacher", function(req, res) {
   })
 })
 
+app.get("/student", function(req, res) {
+  res.render("student.ejs", {
+
+  })
+})
 
 app.post('/access', function(req, res) {
   res.render('access.ejs', {
